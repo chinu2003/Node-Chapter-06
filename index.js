@@ -38,6 +38,17 @@ app.get("/files/:filename", function (req, res) {
   });
 });
 
+
+app.get("/edit/:filename", function (req, res) {
+  res.render('edit',{filename:req.params.filename})
+});
+app.post("/edit", function (req, res) {
+  fs.rename(`./files/${req.body.Previoustitle}`,`./files/${req.body.Newtitle}.txt`,(err)=>{
+    res.redirect('/')
+    console.log(err)
+  })
+});
+
 // for dynamic route add :
 app.get("/profile/:username", function (req, res) {
   // req.params.username
